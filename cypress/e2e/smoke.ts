@@ -43,9 +43,8 @@ describe("smoke tests", () => {
 
     cy.findByRole("button", { name: /save/i }).click();
 
-    // TODO: implement delete button
-    // cy.findByRole("button", { name: /delete/i }).click();
+    cy.findByRole("button", { name: /delete/i }).click();
 
-    // cy.findByText("No spends yet");
+    cy.findByText("No spends yet");
   });
 });
