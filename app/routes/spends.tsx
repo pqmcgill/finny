@@ -1,6 +1,6 @@
 import type { LoaderFunction } from "@remix-run/node";
 import { json } from "@remix-run/node";
-import { Form, Link, NavLink, Outlet, useLoaderData } from "@remix-run/react";
+import { Form, Link, Outlet, useLoaderData } from "@remix-run/react";
 import { getSpendListItems } from "~/models/spend.server";
 import { requireUserId } from "~/session.server";
 import { useUser } from "~/utils";
@@ -20,8 +20,8 @@ export default function SpendsPage() {
   const user = useUser();
 
   return (
-    <div className="flex flex-col h-full min-h-screen">
-      <header className="flex items-center justify-between p-4 text-white bg-slate-800">
+    <div className="flex flex-col h-full min-h-screen bg-slate-50">
+      <header className="flex items-center justify-between p-4 text-pink-400 bg-slate-50">
         <h1 className="text-3xl font-bold">
           <Link to=".">Spends</Link>
         </h1>
@@ -29,18 +29,16 @@ export default function SpendsPage() {
         <Form action="/logout" method="post">
           <button
             type="submit"
-            className="px-4 py-2 text-blue-100 rounded bg-slate-600 hover:bg-blue-500 active:bg-blue-600"
+            className="px-4 py-2 text-white bg-pink-400 rounded hover:bg-pink-500 active:bg-pink-600"
           >
             Logout
           </button>
         </Form>
       </header>
 
-      <main className="flex h-full bg-white">
-        <div className="h-full border-r w-80 bg-gray-50">
-          <Link to="new" className="block p-4 text-xl text-blue-500">
-            + New Spend
-          </Link>
+      <main className="flex h-full px-16 bg-white">
+        <div className="flex-1 h-full border-r w-80 bg-gray-50">
+          <Outlet />
 
           <hr />
 
@@ -50,22 +48,13 @@ export default function SpendsPage() {
             <ol>
               {data.spendListItems.map((spend) => (
                 <li key={spend.id}>
-                  <NavLink
-                    className={({ isActive }) =>
-                      `block border-b p-4 text-xl ${isActive ? "bg-white" : ""}`
-                    }
-                    to={spend.id}
-                  >
-                    📝 {spend.memo}
-                  </NavLink>
+                  <div className={`block border-b p-4 text-xl`}>
+                    ${spend.amount.toFixed(2)} - {spend.memo}
+                  </div>
                 </li>
               ))}
             </ol>
           )}
-        </div>
-
-        <div className="flex-1 p-6">
-          <Outlet />
         </div>
       </main>
     </div>
