@@ -4,7 +4,7 @@ import { useOptionalUser } from "~/utils";
 export default function Index() {
   const user = useOptionalUser();
   return (
-    <main className="relative min-h-screen bg-slate-50 sm:flex sm:items-center sm:justify-center">
+    <main className="relative min-h-screen bg-slate sm:flex sm:items-center sm:justify-center">
       <div className="relative sm:pb-16 sm:pt-8">
         <div className="h-screen mx-auto max-w-7xl sm:px-6 lg:px-8">
           <div className="relative shadow-xl sm:overflow-hidden sm:rounded-2xl">
@@ -21,7 +21,9 @@ export default function Index() {
                   Finny
                 </span>
               </h1>
-
+              <p className="max-w-lg mx-auto mt-6 text-xl text-center text-white sm:max-w-3xl">
+                Manage your spends, one spend at a time.
+              </p>
               <div className="max-w-sm mx-auto mt-10 sm:flex sm:max-w-none sm:justify-center">
                 {user ? (
                   <Link

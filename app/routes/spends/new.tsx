@@ -17,7 +17,6 @@ type ActionData = {
 };
 
 export const action: ActionFunction = async ({ request }) => {
-  await new Promise((res) => setTimeout(res, 1000));
   const userId = await requireUserId(request);
 
   const formData = await request.formData();
