@@ -39,11 +39,13 @@ describe("smoke tests", () => {
     cy.findByRole("link", { name: /\+ new spend/i }).click();
 
     cy.findByRole("textbox", { name: /memo/i }).type(testSpend.memo);
-    // cy.findByRole("textbox", { name: /body/i }).type(testNote.body);
+    cy.findByLabelText("Amount:").type(testSpend.amount + "");
+
     cy.findByRole("button", { name: /save/i }).click();
 
-    cy.findByRole("button", { name: /delete/i }).click();
+    // TODO: implement delete button
+    // cy.findByRole("button", { name: /delete/i }).click();
 
-    cy.findByText("No spends yet");
+    // cy.findByText("No spends yet");
   });
 });
